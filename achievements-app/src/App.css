@@ -26,6 +26,10 @@ body { margin: 0; }
 
 @media (max-width: 640px) {
   .frameLogo img { width: 48px; height: 48px; }
-  .topbar { padding: 8px; gap: 8px; }
-  .btn { padding: 8px 10px; }
+  .topbar { padding: 8px; gap: 8px; align-items: stretch; flex-wrap: wrap; }
+  .topbar .spacer { display: none; }
+  .topbar .actions { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .topbar .actions:first-child { order: 1; width: 100%; }
+  .topbar .actions:last-child { order: 2; width: 100%; justify-content: flex-end; }
+  .btn { padding: 8px 10px; white-space: nowrap; }
 }

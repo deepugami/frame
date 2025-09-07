@@ -43,7 +43,7 @@ export type EditorState = {
   selectedId: string | null
   addItems: (items: EditorItem[]) => void
   addItem: (item: EditorItem) => void
-  updateItem: (id: string, updater: Partial<EditorItemBase> & Partial<ImageItem & VideoItem & TweetItem>) => void
+  updateItem: (id: string, updater: Partial<EditorItem>) => void
   removeItem: (id: string) => void
   setSelected: (id: string | null) => void
   moveItemWithinBounds: (id: string) => void

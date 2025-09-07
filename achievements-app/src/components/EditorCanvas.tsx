@@ -7,7 +7,6 @@ import type { EditorItem, ImageItem, VideoItem, TweetItem } from '../store/edito
 type EditorCanvasProps = { onDeselect: () => void }
 
 function PlayOverlay({ width, height }: { width: number; height: number }) {
-  const triangleSize = Math.min(width, height) * 0.25
   const overlayRadius = Math.min(width, height) * 0.16
   const centerX = width / 2
   const centerY = height / 2

@@ -1,3 +1,4 @@
+// dom-to-image-more has no bundled TS types; we provide a module declaration in src/types
 import domtoimage from 'dom-to-image-more'
 
 export async function exportNodeToPng(node: HTMLElement, width: number, height: number, filename: string) {

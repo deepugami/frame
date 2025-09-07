@@ -1,0 +1,5 @@
+achievements-app/node_modules/
+achievements-app/dist/
+achievements-app/.vite/
+.DS_Store
+.vercel

@@ -68,7 +68,7 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   updateItem: (id, updater) => set(produce<EditorState>((draft) => {
     const idx = draft.items.findIndex((i) => i.id === id)
     if (idx !== -1) {
-      draft.items[idx] = { ...draft.items[idx], ...updater } as EditorItem
+      draft.items[idx] = { ...(draft.items[idx] as EditorItem), ...(updater as Partial<EditorItem>) } as EditorItem
     }
   })),
   removeItem: (id) => set(produce<EditorState>((draft) => {

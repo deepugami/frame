@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Stage, Layer, Rect, Image as KonvaImage, Group, Text as KonvaText, Transformer } from 'react-konva'
 import useImage from 'use-image'
 import { useEditorStore } from '../store/editorStore'
@@ -11,7 +11,6 @@ function PlayOverlay({ width, height }: { width: number; height: number }) {
   const overlayRadius = Math.min(width, height) * 0.16
   const centerX = width / 2
   const centerY = height / 2
-  const path = `M ${centerX - triangleSize * 0.4} ${centerY - triangleSize * 0.6} L ${centerX - triangleSize * 0.4} ${centerY + triangleSize * 0.6} L ${centerX + triangleSize * 0.6} ${centerY} Z`
   return (
     <Group>
       <Rect x={centerX - overlayRadius} y={centerY - overlayRadius} width={overlayRadius * 2} height={overlayRadius * 2} cornerRadius={overlayRadius} fill="rgba(0,0,0,0.5)" />
@@ -125,7 +124,7 @@ function SelectionTransformer({ selectedId }: { selectedId: string | null }) {
     transformer.nodes(node ? [node] : [])
     transformer.getLayer()?.batchDraw()
   }, [selectedId])
-  return <Transformer ref={transformerRef} rotateEnabled={false} keepRatio={true} boundBoxFunc={(oldBox, newBox) => {
+  return <Transformer ref={transformerRef} rotateEnabled={false} keepRatio={true} boundBoxFunc={(_oldBox, newBox) => {
     const min = 48
     const width = Math.max(min, newBox.width)
     const height = Math.max(min, newBox.height)
@@ -135,7 +134,10 @@ function SelectionTransformer({ selectedId }: { selectedId: string | null }) {
 
 export default function EditorCanvas({ onDeselect }: EditorCanvasProps) {
   const { items, selectedId, setSelected, frameWidth, frameHeight } = useEditorStore()
-  const onBackgroundClick = () => setSelected(null)
+  const onBackgroundClick = () => {
+    setSelected(null)
+    onDeselect()
+  }
   const [frameImg] = useImage('/frame_bg.jpg')
 
   return (
